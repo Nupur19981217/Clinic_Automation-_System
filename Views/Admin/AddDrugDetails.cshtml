@@ -1,0 +1,42 @@
+﻿@model ClinicalAutomationSystem_MVC_.Models.AddDrugModel
+@{
+    ViewBag.Title = "AddDrugDetails";
+}
+
+<h2>AddDrugDetails</h2>
+
+@using (Html.BeginForm("AddDrugDetails", "Admin"))
+{
+<div class="col-md-4">
+    @{ Html.RenderPartial("_AdminMenu");}
+</div>
+<div class="col-md-8">
+
+    <div>
+        Drug Name:@Html.TextBoxFor(m => m.DName)
+        <br />
+        <br />
+        Used For:@Html.TextBoxFor(m => m.Use)
+        <br />
+        <br />
+        Manufacturing Date:@Html.TextBoxFor(m => m.MfgDate)
+        <br />
+        <br />
+        Expiry Date:@Html.TextBoxFor(m => m.ExpDate)
+        <br />
+        <br />
+        Side Effects:@Html.TextBoxFor(m => m.SideEff)
+        <br />
+        <br />
+        Quantity:@Html.TextBoxFor(m => m.Qtty)
+        <br />
+        <br />
+        <input type="submit" value="submit" />
+        <br />
+        <br />
+        @ViewBag.text
+
+
+    </div>
+</div>
+        }

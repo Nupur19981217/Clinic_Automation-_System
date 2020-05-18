@@ -1,0 +1,36 @@
+﻿@model ClinicalAutomationSystem_MVC_.Models.SupplierModel
+@{
+    ViewBag.Title = "EditProfile";
+}
+
+<h2>EditProfile</h2>
+
+@using (Html.BeginForm("EditProfile", "Supplier"))
+{
+<div>
+
+
+    First Name:@Html.TextBoxFor(m => m.FName)
+    @Html.ValidationMessageFor(m => m.FName)
+    <br />
+    <br />
+    Last Name:@Html.TextBoxFor(m => m.LName)
+    @Html.ValidationMessageFor(m => m.LName)
+    <br />
+    <br />
+    Company Name :@Html.TextBoxFor(m => m.CompName)
+    @Html.ValidationMessageFor(m => m.CompName)
+    <br />
+    <br />
+    Company Address:@Html.TextBoxFor(m => m.CompAdd)
+    @Html.ValidationMessageFor(m => m.CompAdd)
+
+    <br />
+    <br />
+
+    <input type="submit" value="submit" />
+
+    <br />
+    @ViewBag.text
+</div>
+}

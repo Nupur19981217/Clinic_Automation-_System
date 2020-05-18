@@ -1,0 +1,27 @@
+﻿
+
+<div class="navbar navbar-inverse navbar-left navbar-form">
+    <div class="container-fluid">
+
+    @if (Request.IsAuthenticated && Session["name"] == null)
+    {
+        @Html.ActionLink("Fill Details", "EditProfile", "Patient", new { area = "" }, new { @class = "navbar" })<br /><br />
+    }
+    else if (Session["name"] != null)
+    {
+        @Html.ActionLink("Home", "Index", "Patient", new { area = "" }, new { @class = "navbar" })<br />
+        @Html.ActionLink("Edit Profile", "EditProfile", "Patient", new { area = "" }, new { @class = "navbar" })<br />
+        @Html.ActionLink("Change Password", "ChangePassword", "Home", new { area = "" }, new { @class = "navbar" })<br />
+        @Html.ActionLink("Take Appointment", "TakeAppointment", "Patient", new { area = "" }, new { @class = "navbar" })<br />
+        @Html.ActionLink("View Appointments", "ViewAppointments", "Patient", new { area = "" }, new { @class = "navbar" })<br />
+        @Html.ActionLink("Send Message", "SendMessageTo", "Patient", new { area = "" }, new { @class = "navbar" })<br />
+        @Html.ActionLink("View Message", "ViewMessage", "Patient", new { area = "" }, new { @class = "navbar" })<br />
+        @Html.ActionLink("Order Drug", "OrderDrug", "Patient", new { area = "" }, new { @class = "navbar "})<br />
+        @Html.ActionLink("View Orders", "ViewOrders", "Patient", new { area = "" }, new { @class = "navbar" })<br />
+
+
+    }
+
+    </div>
+</div>
+

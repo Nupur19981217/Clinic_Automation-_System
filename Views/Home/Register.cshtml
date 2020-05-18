@@ -1,0 +1,40 @@
+﻿@model ClinicalAutomationSystem_MVC_.Models.DataModel
+@{
+    ViewBag.Title = "Register";
+}
+
+<h2>Register</h2>
+
+@using(Html.BeginForm("Register", "Home"))
+{
+<div>
+    @{Html.RenderPartial("_IndexMenu"); }
+
+    <br />
+    <br />
+
+    Email:@Html.TextBoxFor(m => m.Email)
+    @Html.ValidationMessageFor(m => m.Email)
+    <br />
+    <br />
+    Password:@Html.TextBoxFor(m => m.Password)
+    @Html.ValidationMessageFor(m => m.Password)
+    <br />
+    <br />
+
+    Confirm Password:@Html.TextBoxFor(m => m.ConfirmPassword)
+    @Html.ValidationMessageFor(m => m.ConfirmPassword)
+    <br />
+    <br />
+    Role:@Html.DropDownListFor(m => m.RoleId, Model.ListR, "Select Role")
+
+    <br />
+    <br />
+    <input type="Submit" id="btnSubmit" value="Submit"  />
+    <br />
+    <br />
+    @ViewBag.text
+</div>
+}
+
+

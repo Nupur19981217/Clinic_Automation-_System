@@ -1,0 +1,63 @@
+﻿@model ClinicalAutomationSystem_MVC_.Models.ViewOrderModel
+@{
+    ViewBag.Title = "ViewOrders";
+}
+
+<h2>ViewOrders</h2>
+
+<div class="col-md-4">
+    @{ Html.RenderPartial("_SupplierMenu");}
+</div>
+<div class="col-md-8">
+
+    <div>
+
+        <table border="1">
+            <tr>
+                <th>Drug Name</th>
+
+                <th>Order Quantity</th>
+
+                <th>Order Number</th>
+
+                <th>Action Button</th>
+
+
+            </tr>
+
+            @foreach (var item in Model.ListOrder)
+            {
+                <tr>
+
+                    <td>@item.DrugName</td>
+                    <td>@item.OrderQtty</td>
+                    <td>@item.OrderNo</td>
+                   
+                    <td>
+
+                        @if (item.OrderStatus == "Assigned")
+                        {
+                            <button onclick="location.href='@Url.Action("UpdateOrders", "Supplier", new { id = item.OrderID, str = "Delivered" })';return false;">Deliver</button>
+                            <br />
+                            <button onclick="location.href='@Url.Action("UpdateOrders", "Supplier", new { id = item.OrderID, str = "Rejected" })';return false;">Reject</button>
+
+                        }
+                        else
+
+                        {
+                            @item.OrderStatus
+                        }
+
+                        <br />
+
+
+                    </td>
+
+                </tr>
+            }
+
+        </table>
+    </div>
+
+</div>
+

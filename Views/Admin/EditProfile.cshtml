@@ -1,0 +1,33 @@
+﻿@model ClinicalAutomationSystem_MVC_.Models.AdminModel
+@{
+    ViewBag.Title = "EditProfile";
+}
+
+<h2>EditProfile</h2>
+
+@using (Html.BeginForm("EditProfile", "Admin"))
+{
+    <div>
+
+        
+        First Name:@Html.TextBoxFor(m => m.FName)
+        <br />
+        <br />
+        Last Name:@Html.TextBoxFor(m => m.LName)
+        <br />
+        <br />
+        
+        Address:@Html.TextBoxFor(m => m.Address)
+
+        <br />
+        <br />
+        Gender:Male-@Html.RadioButtonFor(m => m.Gender, "male")
+        Female-@Html.RadioButtonFor(m => m.Gender, "female")
+        <br />
+        <br />
+
+        <input type="submit" value="submit" />
+
+        <br />
+    </div>
+}

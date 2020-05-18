@@ -1,0 +1,28 @@
+﻿@model ClinicalAutomationSystem_MVC_.Models.PatientModel
+@{
+    ViewBag.Title = "Inbox";
+}
+
+<h2>Inbox</h2>
+
+@using (Html.BeginForm("Inbox", "Patient"))
+{
+    <div class="col-md-4">
+        @{ Html.RenderPartial("_PatientMenu");}
+    </div>
+    <div class="col-md-8">
+        @Html.HiddenFor(a=>a.AppointId)
+        Subject:@Html.TextBoxFor(m => m.MsgSub)
+        <br />
+        <br />
+        Message Details:@Html.TextAreaFor(m => m.MsgDetail)
+        <br />
+        <br />
+       @ViewBag.text
+        
+
+        <input type="submit" value="Send" />
+
+
+    </div>
+ }

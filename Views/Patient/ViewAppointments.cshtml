@@ -1,0 +1,48 @@
+﻿@model ClinicalAutomationSystem_MVC_.Models.PatientModel
+@{
+    ViewBag.Title = "ViewAppointments";
+}
+
+<h2>ViewAppointments</h2>
+@using (Html.BeginForm("ViewAppointments", "Patient"))
+{
+    <div class="col-md-4">
+        @{ Html.RenderPartial("_PatientMenu");}
+    </div>
+    <div class="col-md-8">
+
+        <div>
+            <table border="1">
+                <tr>
+                    <th>Appointment Date</th>
+
+                    <th>Doctor Name</th>
+
+                    <th>Appointment Subject</th>
+
+                    <th>Appointment Description</th>
+
+                    <th>Appointment Status</th>
+
+                   
+                </tr>
+
+                @foreach (var item in Model.ListApp)
+                {
+                    <tr>
+                        <td>@item.AppointDate</td>
+                        <td>@item.DoctorName</td>
+                        <td>@item.AppointSub</td>
+                        <td>@item.AppointDesc</td>
+                        <td>@item.AppointStatus</td>
+                        
+                    </tr>
+                }
+
+            </table>
+        </div>
+
+    </div>
+            
+    
+}

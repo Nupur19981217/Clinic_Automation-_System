@@ -1,0 +1,89 @@
+﻿@model ClinicalAutomationSystem_MVC_.Models.OrderModel
+@{
+    ViewBag.Title = "OrderDrug";
+}
+
+<h2>OrderDrug</h2>
+
+<div class="col-md-4" style="float:left; width:30%; height:auto; ">
+    @{ Html.RenderPartial("_PatientMenu");}
+
+</div>
+
+<div class="col-md-8" style="float:right; width:70%; padding-left:40px;">
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <h2>Order Drugs</h2>
+    @using (Html.BeginForm("OrderDrug", "Patient"))
+    {
+<div>
+    <br />
+    Drug:
+    <br />
+    @*@Html.DropDownListFor(m => m.DrugId, Model.ListDrug, "Select Drug", new { onchange = "document.forms[0].submit();" })*@
+    @Html.DropDownListFor(m => m.DrugId, Model.ListDrug, "Select Drug", new { @id = "ddlDrug" })
+
+    @Html.ValidationMessageFor(m => m.DrugId)
+
+    <br /> <br />
+    Total Quantity Available:
+    @*@Html.HiddenFor(m => m.TotalQtty)
+        <br />
+        @Html.DisplayFor(m => m.TotalQtty, new { @id = "tQtty" })*@
+
+    <label id="lblQtty"></label>
+    <br /> <br />
+    Enter Order Quantity:
+    <br />
+    @Html.TextBoxFor(m => m.OrderQtty)
+    @Html.ValidationMessageFor(m => m.OrderQtty)
+    <br /> <br />
+    @ViewBag.text
+    <br /><br />
+    <input class="btn btn-primary" type="submit" value="Place Order" />
+    <br />
+    @ViewBag.text2
+
+    <br /> <br />
+
+    <script>
+        $(document).ready(function () {
+            $("#ddlDrug").change(function () {
+                $("#lblQtty").empty();
+
+                //dataobj = {
+                //    DrugId: drId
+                //}
+                $.ajax({
+                    url: '@Url.Action("getQuant","Patient")',
+                    type: 'get',
+                    data: { id:$("#ddlDrug").val()},
+                    dataType: 'json',
+                    success: function (data) {
+                        if (data != "") {
+                            $("#lblQtty").html(data);
+                        }
+                        //alert("Success");
+                    },
+                    error: function () {
+                        alert("Error ");
+                    },
+                });
+            });
+
+       });
+    </script>
+
+
+</div>
+    }
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+</div>
+
+    
+

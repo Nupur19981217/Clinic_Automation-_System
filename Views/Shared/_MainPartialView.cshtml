@@ -1,0 +1,29 @@
+﻿<div>
+    @Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+    @Html.ActionLink("About Us", "AboutUs", "Home", new { area = "" }, new { @class = "navbar-brand" })
+    @Html.ActionLink("Contact Us", "ContactUs", "Home", new { area = "" }, new { @class = "navbar-brand" })
+    @if (Request.IsAuthenticated && Session["EmailId"] != null)
+    {
+
+        @Html.ActionLink("Log out", "Logout", "Home", new { area = "" }, new { @class = "navbar-brand" })
+        switch (Session["RoleName"])
+        {
+            
+            case ("Doctor"):
+                @Html.ActionLink("Dashboard", "Index", "Doctor", new { area = "" }, new { @class = "navbar-brand" })
+                break;
+            case ("Patient"):
+                @Html.ActionLink("Dashboard", "Index", "Patient", new { area = "" }, new { @class = "navbar-brand" })
+                break;
+            case ("Supplier"):
+                @Html.ActionLink("Dashboard", "Index", "Supplier", new { area = "" }, new { @class = "navbar-brand" })
+                break;
+        }
+
+    }
+    else
+    {
+    @Html.ActionLink("Login", "Login", "Home", new { area = "" }, new { @class = "navbar-brand" })
+    @Html.ActionLink("Register", "Register", "Home", new { area = "" }, new { @class = "navbar-brand" })
+    }
+</div>

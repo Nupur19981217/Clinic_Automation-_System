@@ -1,0 +1,108 @@
+﻿@model ClinicalAutomationSystem_MVC_.Models.ViewOrderModel
+@{
+    ViewBag.Title = "ViewPatientOrders";
+}
+
+<h2>ViewPatientOrders</h2>
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+@*@using (Html.BeginForm("ViewAppointments", "Doctor"))
+    {*@
+<div class="col-md-4">
+    @{ Html.RenderPartial("_AdminMenu");}
+</div>
+<div class="col-md-8">
+
+    <div>
+
+        <table border="1">
+            <tr>
+                <th>Order Number</th>
+                <th>Patient Name</th>
+                <th>Drug Name</th>
+                <th>Order Date</th>
+                <th>Order Quantity</th>
+                <th>Order Status</th>
+
+
+            </tr>
+
+            @foreach (var item in Model.ListOrder)
+            {
+                <tr>
+                    <td>@item.OrderNo</td>
+                    <td>@item.PatientName</td>
+
+                    <td>@item.DrugName</td>
+                    <td>@item.OrderDate</td>
+                    <td>@item.OrderStatus</td>
+                    <td>
+
+                        @if (item.OrderStatus == "Requested")
+                        {
+                            <!-- Modal -->
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal_@item.OrderID">
+                                Assign
+                            </button>
+                            <div class="modal fade" id="exampleModal_@item.OrderID" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel_@item.OrderID">Assign Supplier</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            @Html.DropDownListFor(m => m.SupplierId, Model.ListSupp, "Select", new { @id = "SupplierId" })
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            <button type="submit" class="btn btn-primary" id="btnass_@item.OrderID">Assign</button>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        }
+
+                        else
+
+                        {
+                            @item.OrderStatus
+                        }
+
+                        <script>
+                                        $(document).ready(function () {
+                                        $("#btnass_@item.OrderID").click(function () {
+                                        var text = $("#SupplierId").val();
+                                            var datavalue = { sid: text  ,ono:@item.OrderID };
+                                        $.ajax({
+                                        url: '@Url.Action("Assign", "Admin")',
+                                        type: 'post',
+                                        data: datavalue,
+                                        datatype: 'Json',
+                                        success: function () {
+                                        alert("Assigned successfully");
+                                        window.location.href = '@Url.Action("ViewPatientOrders", "Admin")';
+                                        },
+                                        error: function () {
+                                        alert("Error Occured");
+                                        }
+                                        })
+                                        })
+                                        });
+                        </script>
+                        <br />
+
+                    </td>
+
+                </tr>
+            }
+        </table>
+    </div>
+
+</div>
+
+
+

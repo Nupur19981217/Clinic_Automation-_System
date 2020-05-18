@@ -1,0 +1,41 @@
+﻿@model ClinicalAutomationSystem_MVC_.Models.PatientModel
+@{
+    ViewBag.Title = "ViewMessage";
+}
+
+<h2>ViewMessage</h2>
+
+<div class="col-md-4">
+    @{ Html.RenderPartial("_PatientMenu");}
+</div>
+@*<div style="float:right;width:80%;padding-left:40px;">*@
+
+
+    <div class="col-md-8">
+        <div>
+            <table class="table table-striped table-responsive" border="1">
+                <tr>
+                    <th>Doctor Name</th>
+                    <th>Subject</th>
+                    <th>Details</th>
+                    <th>Date</th>
+                    <th>Action Button</th>
+                    
+                </tr>
+                @foreach (var item in Model.ListApp)
+                {
+                    <tr>
+
+                        <td>@item.DoctorName</td>
+                        <td>@item.MsgSub</td>
+                        <td>@item.MsgDetail</td>
+                        <td>@item.MsgDate</td>
+                        <td><a href="@Url.Action("ViewAllMessages", "Patient", new { id = item.MsgId })">Send Message </a></td>
+
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+@*</div>*@
+

@@ -1,0 +1,22 @@
+﻿@model ClinicalAutomationSystem_MVC_.Models.DataModel
+@{
+    ViewBag.Title = "Login";
+}
+
+<h2>Login</h2>
+@using (Html.BeginForm("Login", "Home"))
+{
+<div>
+    User ID: @Html.TextBoxFor(m => m.Email)
+    <br />
+    <br />
+    Password: @Html.TextBoxFor(m => m.Password)
+    <br />
+    <br />
+    <input type="Submit" value="Submit" id="btnSubmit" />
+    <br />
+    <br />
+    @ViewBag.text
+</div>
+}
+

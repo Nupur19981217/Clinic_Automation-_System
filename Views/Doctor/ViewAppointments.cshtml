@@ -1,0 +1,73 @@
+﻿@model ClinicalAutomationSystem_MVC_.Models.DoctorModel
+@{
+    ViewBag.Title = "ViewAppointments";
+}
+
+<h2>ViewAppointments</h2>
+@*@using (Html.BeginForm("ViewAppointments", "Doctor"))
+{*@
+    <div class="col-md-4">
+        @{ Html.RenderPartial("_DoctorMenu");}
+    </div>
+    <div class="col-md-8">
+
+        <div>
+   
+            <table border="1">
+                <tr>
+                    <th>Patient Name</th>
+
+                    <th>Gender</th>
+
+                    <th>Appointment Subject</th>
+
+                    <th>Appointment Description</th>
+
+                    <th>Appointment Date</th>
+
+                    <th>Appointment Status</th>
+
+
+                </tr>
+
+                @foreach (var item in Model.ListApp)
+                {
+                    <tr>
+
+                        <td>@item.PatientName</td>
+                        <td>@item.PGender</td>
+                        <td>@item.AppointSub</td>
+                        <td>@item.AppointDesc</td>
+                        <td>@item.AppointDate</td>
+                        <td>
+                            
+                                @if (item.AppointStatus == "Requested")
+                                {
+                                    <button onclick="location.href='@Url.Action("UpdateAppointments", "Doctor", new { id = item.AppointId, str = "Accepted" })';return false;">Accept</button>
+                                    <br />
+                                    <button onclick="location.href='@Url.Action("UpdateAppointments", "Doctor", new { id = item.AppointId, str = "Rejected" })';return false;">Reject</button>
+
+                                }
+                                else
+
+                                {
+                                    @item.AppointStatus
+                                }
+
+                                <br />
+                              
+                            
+                        </td>
+
+                    </tr>
+                }
+
+            </table>
+        </div>
+
+    </div>
+
+
+
+
+

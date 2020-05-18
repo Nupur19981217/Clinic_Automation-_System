@@ -1,0 +1,46 @@
+﻿@model ClinicalAutomationSystem_MVC_.Models.AddDrugModel
+@{
+    ViewBag.Title = "EditDrug";
+}
+
+<h2>EditDrug</h2>
+@using (Html.BeginForm("EditDrug", "Admin"))
+{
+    <div class="col-md-4">
+        @{ Html.RenderPartial("_AdminMenu");}
+    </div>
+    <div class="col-md-8">
+        <div>
+            @Html.HiddenFor(m => m.DrugId)
+            Drug Name:@Html.TextBoxFor(m => m.DName)
+            <br />
+            <br />
+            Used For:@Html.TextBoxFor(m => m.Use)
+            <br />
+            <br />
+            Manufacture Date:@Html.TextBoxFor(m => m.MfgDate)
+            <br />
+            <br />
+            Expiry Date:@Html.TextBoxFor(m => m.ExpDate)
+            <br />
+            <br />
+            Side Effects:@Html.TextBoxFor(m => m.SideEff)
+            <br />
+            <br />
+            Total Quantity Available:@Html.TextBoxFor(m => m.Qtty)
+            <br />
+            <br />
+
+            Available: @Html.RadioButtonFor(m => m.IsDeleted, "No")
+            Not Available:  @Html.RadioButtonFor(m => m.IsDeleted, "Yes")
+
+            <br />
+            <br />
+
+            <input type="submit" value="Update" />
+
+            <br />
+            @ViewBag.text
+        </div>
+    </div>
+}

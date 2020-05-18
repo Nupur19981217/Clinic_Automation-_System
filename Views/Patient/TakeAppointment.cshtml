@@ -1,0 +1,35 @@
+﻿@model ClinicalAutomationSystem_MVC_.Models.PatientModel
+@{
+    ViewBag.Title = "TakeAppointment";
+}
+
+<h2>DoctorAppointment</h2>
+
+@using (Html.BeginForm("TakeAppointment", "Patient"))
+{
+    <div class="col-md-4">
+        @{ Html.RenderPartial("_PatientMenu");}
+    </div>
+    <div class="col-md-8">
+
+        Doctor:@Html.DropDownListFor(m => m.DoctorId, Model.ListD)
+        <br />
+        <br />
+        Appointment Date:@Html.TextBoxFor(m => m.AppointDate)
+        <br />
+        <br />
+        Subject :@Html.TextBoxFor(m => m.AppointSub)
+        <br />
+        <br />
+        Appointment Description:@Html.TextBoxFor(m => m.AppointDesc)
+
+        <br />
+        <br />
+
+
+        <input type="submit" value="submit" />
+
+        <br />
+        @ViewBag.text
+    </div>
+}
